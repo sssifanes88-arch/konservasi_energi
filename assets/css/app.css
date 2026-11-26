@@ -1,0 +1,91 @@
+/* Tema konservasi energi: pink. Warna dasar lewat variabel agar mode gelap mudah. */
+:root, [data-bs-theme=light] {
+  --pri:#db2777; --pri-d:#be185d; --on:#fff;
+  --bg:#fff5f9; --card:#fff; --hd:#ffe8f1; --mu:#8a5a70; --bd:#f6d5e3;
+  --bs-body-bg:var(--bg); --bs-body-font-family:"Plus Jakarta Sans",system-ui,sans-serif; --bs-body-font-size:.9rem;
+  --bs-primary:#db2777; --bs-primary-rgb:219,39,119;
+  --bs-link-color:#be185d; --bs-link-color-rgb:190,24,93; --bs-link-hover-color:#9d174d; --bs-link-hover-color-rgb:157,23,77;
+}
+[data-bs-theme=dark] {
+  --pri:#f472b6; --pri-d:#ec4899; --on:#3b0a22;
+  --bg:#1c0b14; --card:#2a1220; --hd:#3a1a2c; --mu:#d4a5bd; --bd:#4a2238;
+  --bs-body-bg:var(--bg); --bs-body-color:#fbe8f1; --bs-border-color:var(--bd);
+  --bs-primary:#f472b6; --bs-primary-rgb:244,114,182;
+  --bs-link-color:#f9a8d4; --bs-link-color-rgb:249,168,212; --bs-link-hover-color:#fbcfe8; --bs-link-hover-color-rgb:251,207,232;
+}
+body { background:var(--bg); }
+.ikon { width:20px; height:20px; flex:none; }
+
+/* Kerangka */
+.app-shell { display:flex; min-height:100vh; }
+.sidebar { width:260px; flex:none; background:linear-gradient(180deg,#be185d 0%,#9d174d 55%,#831843 100%); padding:20px 14px; display:flex; flex-direction:column; gap:2px; transition:margin .2s; overflow-y:auto; }
+.app-main { flex:1; min-width:0; display:flex; flex-direction:column; }
+html.side-closed .sidebar { margin-left:-260px; }
+.brand { display:flex; align-items:center; gap:10px; color:#fff; font-weight:700; font-size:1rem; padding:0 6px 14px; text-decoration:none; }
+.logo-img { border-radius:10px; object-fit:cover; background:#fff; }
+.logo-ph { border-radius:10px; background:#fff; color:#be185d; display:grid; place-items:center; }
+.grp { font-size:11px; letter-spacing:.08em; color:#fbcfe8; padding:16px 12px 6px; font-weight:700; }
+.menu { display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:10px; color:#ffe4ef; text-decoration:none; cursor:pointer; }
+.menu:hover { background:rgba(255,255,255,.07); color:#fff; }
+.menu.on { background:rgba(255,255,255,.2); color:#fff; font-weight:700; }
+.menu.on .ikon { color:#fff; }
+.menu-btn { background:none; border:0; width:100%; text-align:left; font:inherit; }
+.chv { margin-left:auto; display:flex; }
+.sub2 { padding-left:14px; }
+.sw { margin-left:auto; width:34px; height:20px; border-radius:99px; background:rgba(255,255,255,.3); position:relative; flex:none; }
+.sw::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:left .2s; }
+.menu-btn.aktif .sw { background:#fff; } .menu-btn.aktif .sw::after { left:16px; background:#be185d; }
+.backdrop { display:none; }
+
+.topbar { height:64px; background:var(--card); border-bottom:1px solid var(--bd); display:flex; align-items:center; justify-content:space-between; padding:0 24px; position:sticky; top:0; z-index:10; }
+.burger { width:40px; height:40px; border-radius:10px; border:1px solid var(--bd); background:transparent; color:var(--bs-body-color); display:grid; place-items:center; }
+.judul-halaman { font-size:1.05rem; }
+.user-btn { display:flex; align-items:center; gap:10px; background:none; border:0; color:var(--bs-body-color); }
+.user-nama { text-align:right; line-height:1.25; } .user-nama b { display:block; } .user-nama small { color:var(--mu); }
+.avatar { width:40px; height:40px; border-radius:50%; background:var(--pri); color:var(--on); display:grid; place-items:center; }
+.dropdown-item { display:flex; align-items:center; gap:8px; }
+.page { padding:28px 32px; display:flex; flex-direction:column; gap:20px; }
+
+@media (max-width: 991.98px) {
+  .sidebar { position:fixed; inset:0 auto 0 0; z-index:1040; margin-left:-260px; }
+  html.side-closed .sidebar { margin-left:-260px; }
+  body.sidebar-open .sidebar { margin-left:0; }
+  body.sidebar-open .backdrop { display:block; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1030; }
+  .page { padding:20px 16px; } .topbar { padding:0 16px; }
+}
+
+/* Komponen */
+.card { background:var(--card); border-color:var(--bd); border-radius:16px; box-shadow:0 1px 3px rgba(190,24,93,.08); }
+.card-header { background:transparent; border-color:var(--bd); }
+.table { --bs-table-bg:transparent; margin-bottom:0; }
+.table thead th { background:var(--hd); color:var(--mu); font-size:.78rem; font-weight:700; border:0; padding:.7rem .9rem; white-space:nowrap; }
+.table td { padding:.8rem .9rem; border-color:var(--bd); }
+.form-control, .form-select { border-radius:10px; background-color:var(--card); border-color:var(--bd); }
+.btn { border-radius:10px; font-weight:600; }
+.btn-success { --bs-btn-bg:var(--pri); --bs-btn-border-color:var(--pri); --bs-btn-color:var(--on); --bs-btn-hover-bg:var(--pri-d); --bs-btn-hover-border-color:var(--pri-d); --bs-btn-hover-color:var(--on); --bs-btn-active-bg:var(--pri-d); --bs-btn-active-border-color:var(--pri-d); --bs-btn-active-color:var(--on); }
+.btn-outline-success { --bs-btn-color:var(--pri); --bs-btn-border-color:var(--pri); --bs-btn-hover-bg:var(--pri); --bs-btn-hover-border-color:var(--pri); --bs-btn-hover-color:var(--on); --bs-btn-active-bg:var(--pri); --bs-btn-active-border-color:var(--pri); --bs-btn-active-color:var(--on); }
+.text-bg-success { background-color:var(--pri) !important; color:var(--on) !important; }
+.stat-ic { width:40px; height:40px; border-radius:12px; background:var(--hd); color:var(--pri); display:grid; place-items:center; }
+.stat-ic.a { background:#fce7f3; color:#9d174d; }
+[data-bs-theme=dark] .stat-ic.a { background:#4a1d35; color:#f9a8d4; }
+.stat-k { color:var(--mu); font-size:.78rem; margin-top:.9rem; } .stat-v { font-size:1.75rem; font-weight:700; line-height:1.2; }
+.muted { color:var(--mu); }
+.grafik { display:flex; align-items:flex-end; gap:12px; height:140px; }
+.grafik div { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; text-align:center; font-size:.7rem; color:var(--mu); }
+.grafik i { display:block; border-radius:8px 8px 4px 4px; background:var(--pri); min-height:3px; }
+.bar-bg { height:8px; border-radius:99px; background:var(--hd); margin-top:6px; } .bar-bg i { display:block; height:8px; border-radius:99px; background:var(--pri); }
+.hero { background:linear-gradient(135deg,#be185d,#9d174d); color:#fff; border:0; }
+.hero .muted { color:#ffe4ef; }
+.btn-amber { background:#fff; color:#9d174d; border:0; }
+.btn-amber:hover { background:#ffe4ef; color:#9d174d; }
+tr.baris-tidak td { background:rgba(245,179,1,.14); }
+.ck { width:18px; height:18px; accent-color:var(--pri); }
+
+/* Tambahan tema pink */
+[data-bs-theme=dark] .sidebar { background:linear-gradient(180deg,#4a1230 0%,#33101f 55%,#240a16 100%); }
+.form-control:focus, .form-select:focus { border-color:var(--pri); box-shadow:0 0 0 .25rem rgba(219,39,119,.18); background-color:var(--card); }
+.form-check-input:checked { background-color:var(--pri); border-color:var(--pri); }
+.form-check-input:focus { border-color:var(--pri); box-shadow:0 0 0 .25rem rgba(219,39,119,.18); }
+.btn-outline-secondary { --bs-btn-color:var(--mu); --bs-btn-border-color:var(--bd); --bs-btn-hover-bg:var(--hd); --bs-btn-hover-color:var(--pri-d); --bs-btn-hover-border-color:var(--pri); --bs-btn-active-bg:var(--hd); --bs-btn-active-color:var(--pri-d); --bs-btn-active-border-color:var(--pri); }
+.table-hover > tbody > tr:hover > * { --bs-table-bg-state:rgba(219,39,119,.06); }
+.dropdown-item:active { background:var(--pri); color:var(--on); }
